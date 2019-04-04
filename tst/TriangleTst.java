@@ -2,6 +2,7 @@ import Assignment7.Triangle;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class TriangleTst {
         Assert.assertEquals(triangleA.getS2(), 2, 0);
         Assert.assertEquals(triangleA.getS3(), 3, 0);
     }
-
+    
     @Test
     public void testIsEquilateral() {
         for (Triangle triangle : equilateralTriangleHelper())
@@ -84,6 +85,7 @@ public class TriangleTst {
         }
     }
 
+    //Helpers generated to help test the triangle class based on the type of triangles
     private ArrayList<Triangle> equilateralTriangleHelper() {
         ArrayList<Triangle> equilateral = new ArrayList<>();
         equilateral.add(new Triangle(1324, 1324, 1324));

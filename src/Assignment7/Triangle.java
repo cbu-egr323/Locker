@@ -30,6 +30,7 @@ public class Triangle {
     }
 
     //******************************************************************
+    //added not a triangle to the triangle class as specified in the spec
     public boolean NotATriangle(){
         if (((s1 + s2) <= s3) ||
                 ((s1 + s3) <= s2) ||
