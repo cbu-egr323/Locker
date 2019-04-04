@@ -17,7 +17,7 @@ public class TriangleTst {
         Assert.assertEquals(triangleA.getS2(), 2, 0);
         Assert.assertEquals(triangleA.getS3(), 3, 0);
     }
-    
+
     @Test
     public void testIsEquilateral() {
         for (Triangle triangle : equilateralTriangleHelper())
