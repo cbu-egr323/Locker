@@ -10,31 +10,42 @@ public class UseTriangle {
         useTriangle.userInput();
     }
 
-    private void userInput() {
+    public void userInput() {
         double[] sideArray = new double[3];
         System.out.println("Please enter 3 number lengths for each side of the" + " triangle. Press enter after each number.");
         for (int i = 0; i < 3; i++) {
             Scanner side = new Scanner(System.in);
             String checkSide = side.nextLine();
-            checkInput(checkSide, LETTERS[i]);
+            if(!checkInput(checkSide)){
+                goAgain();
+            }
             double addSide = Double.valueOf(checkSide);
             sideArray[i] = addSide;
             System.out.println("Side " + LETTERS[i] + ": " + addSide);
         }
-        triangleType(new Triangle(sideArray[0], sideArray[1], sideArray[2]));
+        getTriangle(sideArray);
     }
 
-    private void checkInput(String side, char sideName) {
+    private void getTriangle(double[] sideArray){
+        Triangle triangleType = new Triangle(sideArray[0], sideArray[1], sideArray[2]);
+        triangleType(triangleType);
+
+    }
+
+    public boolean checkInput(String side) {
         try {
             double checkSide = Double.valueOf(side);
-            if (checkSide <= 0) {
-                System.out.println("The lengths of the sides of the triangle must be positive. (Side" + sideName + ")");
-                goAgain();
+            if (checkSide <= 0 || checkSide <= 0.0) {
+                String response = ("The lengths of the sides of the triangle must be positive");
+                System.out.println(response);
+                return false;
             }
         } catch (NumberFormatException bad) {
-            System.out.println(" This is not a number.  Please type a number. (Side" + sideName + ")");
-            goAgain();
+            String response = ("This is not a number.  Please type a number");
+            System.out.println(response);
+            return false;
         }
+        return true;
     }
 
     private void goAgain() {
@@ -49,16 +60,15 @@ public class UseTriangle {
     }
 
     private void triangleType(Triangle triangle) {
-        if (((triangle.getS1() + triangle.getS2()) < triangle.getS3()) ||
-                ((triangle.getS1() + triangle.getS3()) < triangle.getS2()) ||
-                ((triangle.getS2() + triangle.getS3()) < triangle.getS1())) {
+        if(triangle.NotATriangle()){
             System.out.println("Error, not a valid triangle!");
-        } else { //check if invalid, else check for what type it is
+        }else {
             triangle.isEquilateral();
             triangle.isScalene();
             triangle.isIsosceles();
-            goAgain();
         }
+
+        goAgain();
     }
 
 }
